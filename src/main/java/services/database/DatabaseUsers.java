@@ -13,6 +13,7 @@ public class DatabaseUsers implements IDatabase {
 
     public DatabaseUsers() {
         db = new ArrayList<User>();
+        db.add(new User("pedro","12345","Pedro"));
     }
 
     public User getAuth(String username, String password) {
@@ -26,7 +27,7 @@ public class DatabaseUsers implements IDatabase {
     public ArrayList<User> getAll() { return db; }
 
     @Override
-    public User getById(Integer id) {
+    public User getById(int id) {
         Optional<User> result = db.stream()
                 .filter(u -> Objects.equals(u.getId(), id))
                 .findFirst();
@@ -39,7 +40,7 @@ public class DatabaseUsers implements IDatabase {
     }
 
     @Override
-    public void update(Integer id, Object item) {
+    public void update(int id, Object item) {
         User user = (User) item;
         db = (ArrayList<User>) db.stream()
                 .map(u -> {
@@ -52,7 +53,7 @@ public class DatabaseUsers implements IDatabase {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(int id) {
         db = (ArrayList<User>) db.stream().filter(u -> !Objects.equals(u.getId(), id)).collect(Collectors.toList());
     }
 }

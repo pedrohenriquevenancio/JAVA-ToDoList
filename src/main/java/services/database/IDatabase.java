@@ -3,9 +3,9 @@ import java.util.ArrayList;
 
 public interface IDatabase<T> {
     ArrayList<T> getAll();
-    T getById(Integer id);
+    T getById(int id);
     void store(T item);
-    void update(Integer id, T item);
-    void delete(Integer id);
+    void update(int id, T item);
+    void delete(int id);
     default void deleteAll() {    };
 }

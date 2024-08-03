@@ -3,7 +3,6 @@ package main.java.utils;
 import main.java.models.User;
 import main.java.services.database.DatabaseUsers;
 
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -21,17 +20,15 @@ public class Authentication {
 
         do {
             if (Objects.equals(opt, 1)) {
-                user = login(in, db);
+                user = login(db);
                 if (user != null) {
-                    System.out.println("Done!");
                     onSelecting = false;
                 } else {
                     opt = 3;
                 }
             } else if (Objects.equals(opt, 2)) {
-                user = register(in, db);
+                user = register(db);
                 if (user != null) {
-                    System.out.println("Done!");
                     onSelecting = false;
                 } else {
                     opt = 3;
@@ -51,22 +48,28 @@ public class Authentication {
         System.out.println("2 - Register\n");
     }
 
-    public static User login(Scanner in, DatabaseUsers db) {
+    public static User login(DatabaseUsers db) {
+        Scanner in = new Scanner(System.in);
         System.out.print("Username:");
         String username = in.nextLine();
-        System.out.println("---------------");
         System.out.print("Password:");
         String password = in.nextLine();
+        System.out.println("---------------");
         return db.getAuth(username, password);
     }
 
-    public static User register(Scanner in, DatabaseUsers db) {
+    public static User register(DatabaseUsers db) {
+        Scanner in = new Scanner(System.in);
         System.out.println("Create a new User...");
+        System.out.println("---------------");
+        System.out.print("Name:");
+        String name = in.nextLine();
         System.out.print("Username:");
         String username = in.nextLine();
-        System.out.println("\n---------------\n");
         System.out.print("Password:");
         String password = in.nextLine();
+        System.out.println("---------------");
+        db.store(new User(username, password, name));
         return db.getAuth(username, password);
     }
 }

@@ -1,7 +1,5 @@
 package main.java.models;
 
-import java.util.Objects;
-
 public class Task {
     private Integer id;
     private String name;
@@ -38,11 +36,16 @@ public class Task {
         this.description = description;
     }
 
-    public boolean isComplete() {
-        return isComplete;
+    public String getStatus() {
+        return isComplete ? "Complete" : "Pendent";
     }
 
     public void setComplete(boolean complete) {
         isComplete = complete;
+    }
+
+    @Override
+    public String toString() {
+        return "[ID: #"+getId()+", Name: "+getName()+", Description: "+getDescription()+", Status: "+getStatus()+"]";
     }
 }

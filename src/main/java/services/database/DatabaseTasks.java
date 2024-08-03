@@ -20,7 +20,7 @@ public class DatabaseTasks implements IDatabase {
     }
 
     @Override
-    public Task getById(Integer id) {
+    public Task getById(int id) {
         Optional<Task> result = db.stream()
                 .filter(t -> Objects.equals(t.getId(), id))
                 .findFirst();
@@ -33,7 +33,7 @@ public class DatabaseTasks implements IDatabase {
     }
 
     @Override
-    public void update(Integer id, Object item) {
+    public void update(int id, Object item) {
         Task task = (Task) item;
         db = (ArrayList<Task>) db.stream()
                 .map(t -> {
@@ -45,7 +45,7 @@ public class DatabaseTasks implements IDatabase {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void delete(int id) {
         db = (ArrayList<Task>) db.stream().filter(t -> !Objects.equals(t.getId(), id)).collect(Collectors.toList());
     }
 }

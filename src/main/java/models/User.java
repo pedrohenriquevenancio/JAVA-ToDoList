@@ -1,17 +1,15 @@
 package main.java.models;
 
-import java.util.Optional;
-
 public class User {
     private Integer id;
     private String username;
     private String password;
     private String name;
 
-    public User(String username, String password, Optional<String> name) {
+    public User(String username, String password, String name) {
         this.username = username;
         this.password = password;
-        this.name = String.valueOf(name.orElse(username));
+        this.name = name;
     }
 
     public String getUsername() {
@@ -44,5 +42,10 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: "+getName()+"\nUsername: "+getUsername();
     }
 }
