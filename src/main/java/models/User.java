@@ -1,12 +1,13 @@
 package main.java.models;
 
 public class User {
-    private Integer id;
+    private int id;
     private String username;
     private String password;
     private String name;
 
-    public User(String username, String password, String name) {
+    public User(int id, String username, String password, String name) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.name = name;

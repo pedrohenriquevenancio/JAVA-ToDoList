@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Authentication {
-    public static User run() {
+    public static User run(DatabaseUsers db) {
         System.out.println("Welcome to the TO DO LIST APP");
         printQuestion();
 
@@ -16,7 +16,6 @@ public class Authentication {
 
         boolean onSelecting = true;
         User user = null;
-        DatabaseUsers db = new DatabaseUsers();
 
         do {
             if (Objects.equals(opt, 1)) {
@@ -24,6 +23,7 @@ public class Authentication {
                 if (user != null) {
                     onSelecting = false;
                 } else {
+                    System.out.println("Incorrect credentials... Try again!\n");
                     opt = 3;
                 }
             } else if (Objects.equals(opt, 2)) {
@@ -31,6 +31,7 @@ public class Authentication {
                 if (user != null) {
                     onSelecting = false;
                 } else {
+                    System.out.println("Incorrect credentials... Try again!\n");
                     opt = 3;
                 }
             } else {
@@ -69,7 +70,8 @@ public class Authentication {
         System.out.print("Password:");
         String password = in.nextLine();
         System.out.println("---------------");
-        db.store(new User(username, password, name));
+        int id = db.getAll().size() + 1;
+        db.store(new User(id, username, password, name));
         return db.getAuth(username, password);
     }
 }

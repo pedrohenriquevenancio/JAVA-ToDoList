@@ -13,7 +13,7 @@ public class DatabaseUsers implements IDatabase {
 
     public DatabaseUsers() {
         db = new ArrayList<User>();
-        db.add(new User("pedro","12345","Pedro"));
+        db.add(new User(1,"pedro","12345","Pedro"));
     }
 
     public User getAuth(String username, String password) {
