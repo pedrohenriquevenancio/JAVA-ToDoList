@@ -71,8 +71,7 @@ public class ToDoListApp {
     }
 
     private static boolean endMenu() {
-        System.out.println("Go to Login Page?");
-        System.out.println("1 -> Yes   |   Press any key -> No");
+        System.out.println("Go to Login Page?\n1 -> Yes   |   Press any key -> No");
         Scanner in = new Scanner(System.in);
         int opt = in.nextInt();
         in.close();
@@ -86,6 +85,21 @@ public class ToDoListApp {
             System.out.println("\n");
             tasks.forEach(t -> System.out.println(t.toString()));
             System.out.println("\n");
+
+            Scanner in = new Scanner(System.in);
+            int loop = 1;
+            do {
+                System.out.println("Would you like to check a task as 'Done'?\n1 -> Yes   |   Press any key -> No");
+                int opt = in.nextInt();
+                if (opt == 1) {
+                    System.out.println("Enter the task ID:");
+                    int id = in.nextInt();
+                    db.checkTaskAsDone(id);
+                }
+                System.out.println("1 -> Choose another task   |   Press any key -> Back to menu");
+                loop = in.nextInt();
+            } while(loop);
+            in.close();
         } else {
             System.out.println("No tasks available...");
         }

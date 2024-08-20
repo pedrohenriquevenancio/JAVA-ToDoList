@@ -14,6 +14,15 @@ public class DatabaseTasks implements IDatabase {
         db = new ArrayList<Task>();
     }
 
+    public void checkTaskAsDone(int id) {
+        db = (ArrayList<Task>) db.stream().map(t -> {
+            if (Objects.equals(t.getId(), id)){
+                t.setComplete(true);
+            }
+            return t;
+        }).collect(Collectors.toList());
+    }
+    
     @Override
     public ArrayList<Task> getAll() {
         return db;
