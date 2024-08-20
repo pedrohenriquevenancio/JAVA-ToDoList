@@ -24,6 +24,7 @@ public class ToDoListApp {
             onSelect = menu(dbTasks, user);
         } while(onSelect);
 
+        in.close();
         System.out.println("Finishing application...");
     }
 
@@ -35,7 +36,7 @@ public class ToDoListApp {
         Scanner in = new Scanner(System.in);
 
         do {
-            System.out.println("c                   -----------MENU----------                ");
+            System.out.println("                    ----------MENU----------                ");
             System.out.println("1 - Show tasks      |      2 - New task    |     3 - Edit task");
             System.out.println("4 - User settings   |      5 - Logout      |     6 - Close app");
             opt = in.nextInt();
@@ -65,6 +66,7 @@ public class ToDoListApp {
         if (opt != 5) {
             System.out.println("Going to Login page...");
         }
+        in.close();
         return opt != 6;
     }
 
@@ -73,6 +75,7 @@ public class ToDoListApp {
         System.out.println("1 -> Yes   |   Press any key -> No");
         Scanner in = new Scanner(System.in);
         int opt = in.nextInt();
+        in.close();
         return opt != 1;
     }
 
@@ -101,6 +104,7 @@ public class ToDoListApp {
 
         int id = db.getAll().size() + 1;
         db.store(new Task(id, user.getId(), name, description));
+        in.close();
     }
 
     private static void editTask(DatabaseTasks db) {
@@ -132,6 +136,7 @@ public class ToDoListApp {
         task.setDescription(description);
 
         db.update(id, new Task(id, task.getUserId(), task.getName(), task.getDescription()));
+        in.close();
     }
 
     private static void userSettings(User user) {
